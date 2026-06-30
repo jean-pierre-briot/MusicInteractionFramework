@@ -1,0 +1,64 @@
+@startuml
+title MusicInteractionFramework - Core Model
+
+abstract class Entity {
+  +id
+  +name
+  +metadata
+  +setMetadata(key, value)
+  +getMetadata(key, defaultValue)
+}
+
+class Agent {
+  +type
+}
+
+class TemporalElement {
+  +startTime
+  +endTime
+  +duration
+}
+
+class NoteEvent {
+  +pitch
+  +velocity
+}
+
+class Sequence {
+  +agent
+  +elements
+  +startTime
+  +endTime
+  +duration
+}
+
+class Relation {
+  +source
+  +target
+  +model
+  +directed
+  +attributes
+}
+
+class Session {
+  +entities
+  +add(entity)
+  +getAgents()
+  +getSequences()
+  +getRelations()
+}
+
+Entity <|-- Agent
+Entity <|-- TemporalElement
+TemporalElement <|-- NoteEvent
+Entity <|-- Sequence
+Entity <|-- Relation
+Entity <|-- Session
+
+Sequence --> Agent : produced by
+Sequence *-- TemporalElement : contains
+Relation --> Sequence : source
+Relation --> Sequence : target
+Session *-- Entity : contains
+
+@enduml

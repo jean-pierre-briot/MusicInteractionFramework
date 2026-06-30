@@ -1,0 +1,45 @@
+@startuml
+title MusicInteractionFramework - Framework Overview
+
+package core {
+  abstract class Entity
+  class Agent
+  class TemporalElement
+  class Sequence
+  class Relation
+  class Session
+  class MetricResult
+}
+
+package interaction {
+  abstract class InteractionModel
+}
+
+package metrics {
+  abstract class Metric
+  abstract class UnaryMetric
+  abstract class BinaryMetric
+  class MetricEngine
+}
+
+Entity <|-- Agent
+Entity <|-- TemporalElement
+Entity <|-- Sequence
+Entity <|-- Relation
+Entity <|-- Session
+Entity <|-- MetricResult
+
+Session *-- Entity
+Sequence --> Agent
+Sequence *-- TemporalElement
+Relation --> Sequence : source
+Relation --> Sequence : target
+InteractionModel --> Session
+InteractionModel --> Relation : creates
+Metric --> MetricResult : produces
+MetricResult --> Entity : target
+
+Metric <|-- UnaryMetric
+Metric <|-- BinaryMetric
+
+@enduml
