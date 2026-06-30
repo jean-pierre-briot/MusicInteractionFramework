@@ -1,0 +1,25 @@
+@startuml
+title MusicInteractionFramework - Builder Framework
+
+abstract class Builder {
+  +name
+  +metadata
+  +build(...)
+}
+
+class RelationBuilder
+class GraphBuilder
+class Provenance
+class Relation
+class RelationGraph
+class Session
+
+Builder <|-- RelationBuilder
+Builder <|-- GraphBuilder
+
+RelationBuilder --> Relation : builds
+RelationBuilder --> Provenance : attaches
+GraphBuilder --> Session : reads
+GraphBuilder --> RelationGraph : builds
+
+@enduml

@@ -6,3 +6,4 @@ export { default as Sequence } from "./Sequence.js";
 export { default as Relation } from "./Relation.js";
 export { default as Session } from "./Session.js";
 export { default as MetricResult } from "./MetricResult.js";
+export { default as Provenance } from "./Provenance.js";
