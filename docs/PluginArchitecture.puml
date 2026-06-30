@@ -1,0 +1,31 @@
+@startuml
+title MusicInteractionFramework - Plugin Architecture
+
+abstract class Plugin {
+  +name
+  +version
+  +install(context)
+}
+
+class PluginRegistry {
+  +register(type, name, value)
+  +get(type, name)
+  +getAll(type)
+}
+
+class PluginManager {
+  +use(plugin)
+  +plugins()
+}
+
+class PluginContext {
+  +register(type, name, value)
+}
+
+PluginManager --> Plugin
+PluginManager --> PluginRegistry
+PluginManager --> PluginContext
+PluginContext --> PluginRegistry
+Plugin --> PluginContext
+
+@enduml
