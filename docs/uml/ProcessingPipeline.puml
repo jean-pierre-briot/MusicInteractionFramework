@@ -1,0 +1,28 @@
+@startuml
+title MusicInteractionFramework - Processing Pipeline
+
+class ProcessingContext {
+  +session
+  +data
+  +logs
+  +set(key, value)
+  +get(key, defaultValue)
+  +log(message)
+}
+
+abstract class PipelineStep {
+  +name
+  +execute(context)
+}
+
+class Pipeline {
+  +steps
+  +add(step)
+  +run(session, options)
+}
+
+Pipeline *-- PipelineStep : contains
+Pipeline --> ProcessingContext : creates
+PipelineStep --> ProcessingContext : executes on
+
+@enduml
