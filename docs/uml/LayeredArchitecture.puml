@@ -1,0 +1,19 @@
+@startuml
+title MusicInteractionFramework - Layered Architecture
+
+package "Applications" {}
+package "Pipelines" {}
+package "Plugins" {}
+package "Models and Metrics" {}
+package "Graphs and Builders" {}
+package "Core Ontology" {}
+package "Temporal Data Sources" {}
+
+"Applications" --> "Pipelines"
+"Pipelines" --> "Plugins"
+"Plugins" --> "Models and Metrics"
+"Models and Metrics" --> "Graphs and Builders"
+"Graphs and Builders" --> "Core Ontology"
+"Temporal Data Sources" --> "Core Ontology"
+
+@enduml
