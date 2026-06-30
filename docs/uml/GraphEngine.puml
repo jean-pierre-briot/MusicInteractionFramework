@@ -1,0 +1,30 @@
+@startuml
+title MusicInteractionFramework - Graph Engine
+
+class Session
+class Sequence
+class Relation
+
+class RelationGraph {
+  +addNode(node)
+  +addRelation(relation)
+  +nodes()
+  +relations()
+  +outgoing(node)
+  +incoming(node)
+  +neighbors(node)
+  +relationsBetween(source, target)
+}
+
+class GraphBuilder {
+  +fromSession(session)
+}
+
+Session --> Relation : contains
+Relation --> Sequence : source
+Relation --> Sequence : target
+GraphBuilder --> Session : reads
+GraphBuilder --> RelationGraph : builds
+RelationGraph --> Relation : stores
+
+@enduml
